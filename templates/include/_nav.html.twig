@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{  path('show_home') }}">NewPaper</a>
+        <a class="navbar-brand" href="{{ path('show_home') }}">NewsPaper</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -10,23 +10,38 @@
                     <a class="nav-link active" aria-current="page" href="{{ path('show_home') }}">Accueil</a>
                 </li>
 
-             {% if not app.user %}
-                <li class="nav-item">
-                    <a class="nav-link" href="">Inscription</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Connexion</a>
-                </li>
-             {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Mon compte</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Déconnexion</a>
-                </li>
-            {%  endif %}
+{#                Exercice : Créer les conditions twig pour afficher les boutons de la nav en fonction de l'état du user.#}
+                {% if not app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_register') }}">S'inscrire</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_login') }}">Se connecter</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mon compte</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
+                    </li>
+                {% endif %}
 
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Espace Admin
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Ajouter un article</a></li>
+                            <li><a class="dropdown-item" href="#">Ajouter une catégorie</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
 
+<<<<<<< HEAD
 
             
             
@@ -49,6 +64,13 @@
          <div class="me-5">
              <a> </a>
           </div>
+=======
+            </ul>
+{#            <form class="d-flex">#}
+{#                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">#}
+{#                <button class="btn btn-outline-success" type="submit">Search</button>#}
+{#            </form>#}
+>>>>>>> user
         </div>
     </div>
 </nav>

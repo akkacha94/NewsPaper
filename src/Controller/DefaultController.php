@@ -8,11 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-    #[Route('/', 'show_home', methods:['GET'])]
-    public function index(): Response
+    #[Route('/', name: 'show_home', methods: ['GET'])]
+    public function showHome(): Response
     {
-        return $this->render('default/show_home.html.twig', [
-            
-        ]);
-    }
-}
+        return $this->render('default/show_home.html.twig');
+    } // end function showHome()
+
+} // end class
